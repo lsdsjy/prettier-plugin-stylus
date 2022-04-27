@@ -1,3 +1,3 @@
-# prettier-plugin-toml
+# prettier-plugin-stylus
 
-Sample code for a [tutorial](https://medium.com/@fvictorio/how-to-write-a-plugin-for-prettier-a0d98c845e70) on how to write a plugin for Prettier.
+Prettier plugin for [Stylus](https://stylus-lang.com/).

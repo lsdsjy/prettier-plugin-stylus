@@ -7,7 +7,7 @@ const path = require('path');
 const prettier = require('prettier');
 
 function run_spec(dirname, options) {
-  fs.readdirSync(dirname).forEach(filename => {
+  fs.readdirSync(dirname).forEach((filename) => {
     const filepath = dirname + '/' + filename;
     if (
       path.extname(filename) !== '.snap' &&

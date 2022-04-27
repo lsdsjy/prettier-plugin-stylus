@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "noEmit": false,
+    "target": "es6",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": false,
+    "isolatedModules": true,
+    "lib": ["esnext"]
+  },
+  "include": ["src"]
+}

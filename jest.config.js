@@ -1,11 +1,4 @@
 module.exports = {
-  collectCoverage: true,
-  collectCoverageFrom: [
-    'src/**/*.js',
-    '!<rootDir>/node_modules/',
-    '!src/prettier-comments/**/*.js'
-  ],
-  coverageDirectory: './coverage/',
   setupFiles: ['<rootDir>/tests_config/run_spec.js'],
   snapshotSerializers: ['<rootDir>/tests_config/raw-serializer.js'],
   testEnvironment: 'node',
