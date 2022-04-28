@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "esbuild src/index.ts --format=cjs --outdir=dist",
+    "build": "esbuild src/index.ts src/utils.ts --sourcemap --format=cjs --outdir=dist",
     "example": "npm run build && prettier --plugin . tests/example.styl",
     "test": "npm run build && jest"
   },

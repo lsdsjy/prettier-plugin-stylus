@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`example.styl 1`] = `
+exports[`basic.styl 1`] = `
 a, div {
   color: white  // comment
   span {
@@ -12,4 +12,5 @@ div
   color white
   span
     background rgba(0,0,0,1)
+
 `;

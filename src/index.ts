@@ -1,6 +1,7 @@
 import parser from 'postcss-styl';
 import * as postcss from 'postcss';
 import * as prettier from 'prettier';
+import { formatParams } from './utils';
 const b = prettier.doc.builders;
 
 const languages: prettier.SupportLanguage[] = [
@@ -11,7 +12,7 @@ const languages: prettier.SupportLanguage[] = [
   }
 ];
 
-const AST_FORMAT = 'postcss-stylus-ast'
+const AST_FORMAT = 'postcss-stylus-ast';
 
 const parsers: Record<string, prettier.Parser> = {
   stylus: {
@@ -26,6 +27,10 @@ const parsers: Record<string, prettier.Parser> = {
   }
 };
 
+function childBlock(lines: prettier.Doc[]) {
+  return b.indent([b.hardline, b.join(b.hardline, lines)]);
+}
+
 const printStylus: prettier.Printer<postcss.Node>['print'] = (
   path,
   options,
@@ -35,17 +40,31 @@ const printStylus: prettier.Printer<postcss.Node>['print'] = (
 
   switch (node.type) {
     case 'root':
-      return path.map(print, 'nodes');
-    case 'rule':
+      return [
+        b.join([b.hardline, b.hardline], path.map(print, 'nodes')),
+        b.hardline
+      ];
+    case 'rule': {
       const rule = node as postcss.Rule;
       const selectors = b.join(b.hardline, rule.selectors);
-      return [
-        selectors,
-        b.indent([b.hardline, b.join(b.hardline, path.map(print, 'nodes'))])
-      ];
-    case 'decl':
+      return [selectors, childBlock(path.map(print, 'nodes'))];
+    }
+    case 'atrule': {
+      // postcss-styl parses mixins/functions as AtRule
+      const atrule = node as postcss.AtRule;
+      const name = [atrule.name, formatParams(atrule.params)];
+      if (atrule.nodes) {
+        // mixins/functions declaration
+        return [name, childBlock(path.map(print, 'nodes'))];
+      } else {
+        // expansion or evaluation
+        return name;
+      }
+    }
+    case 'decl': {
       const decl = node as postcss.Declaration;
       return [decl.prop, ' ', decl.value];
+    }
     default:
       return '';
   }
