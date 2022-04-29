@@ -1,5 +1,5 @@
 {
-  "name": "prettier-plugin-toml",
+  "name": "prettier-plugin-stylus",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
@@ -10,12 +10,12 @@
   },
   "keywords": [
     "prettier",
-    "toml",
+    "stylus",
     "plugin"
   ],
   "author": {
-    "name": "Franco Victorio",
-    "email": "victorio.franco@gmail.com"
+    "name": "lsdsjy",
+    "email": "lsdsjy@163.com"
   },
   "license": "MIT",
   "dependencies": {
