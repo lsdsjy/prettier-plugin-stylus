@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`interpolation.styl 1`] = `
+    for size in 48  64 80 96 112 144 
+        &-{size }
+            width size px
+            height size px~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+for size in 48 64 80 96 112 144
+  &-{size}
+    width size px
+    height size px
+
+`;

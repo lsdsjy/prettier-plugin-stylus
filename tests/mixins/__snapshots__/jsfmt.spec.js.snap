@@ -32,7 +32,7 @@ add(a, b = 1)
   a + b
 
 add(a, b = unit(a, px))
-  a +b
+  a + b
 
 div.some-layer
   flex()
