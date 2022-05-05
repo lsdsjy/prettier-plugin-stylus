@@ -5,5 +5,6 @@
 ## TODO
 
 - [x] support comment
+- [ ] add plugin recommendation in prettier docs
 - [ ] Vue SFC (Waiting for upstream, see https://github.com/prettier/prettier/pull/12707)
 - [ ] playground
