@@ -4,6 +4,6 @@
 
 ## TODO
 
-- [ ] support comment
+- [x] support comment
 - [ ] Vue SFC (Waiting for upstream, see https://github.com/prettier/prettier/pull/12707)
 - [ ] playground

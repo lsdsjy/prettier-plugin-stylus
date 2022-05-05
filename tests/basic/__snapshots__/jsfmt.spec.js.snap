@@ -2,7 +2,7 @@
 
 exports[`basic.styl 1`] = `
 a, div {
-  color: white  // comment
+  color: white 
   span {
     background rgba(0,0,0,1)
   }

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`comment.styl 1`] = `
+a, div {   // inline comment
+  color: white   // comment
+  /* asjlfk
+  */ span {
+    background rgba(0,0,0,1)
+  }
+}
+     /* 
+This is a comment
+  */
+// Comment too~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+a
+div  // inline comment
+  color white // comment
+  /* asjlfk
+  */
+  span
+    background rgba(0, 0, 0, 1)
+
+/* 
+This is a comment
+  */
+
+`;

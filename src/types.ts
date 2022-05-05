@@ -3,6 +3,10 @@ type Stylus = typeof stylus;
 type Nodes = Stylus['nodes'];
 
 export namespace Stylus {
+  export interface Token {
+    type: string;
+    val: Node;
+  }
   export type Root = InstanceType<Nodes['Root']>;
   export type Block = InstanceType<Nodes['Block']>;
   export type Group = InstanceType<Nodes['Group']>;
@@ -18,6 +22,7 @@ export namespace Stylus {
   export type Function = InstanceType<Nodes['Function']>;
   export type Params = InstanceType<Nodes['Params']>;
   export type BinOp = InstanceType<Nodes['BinOp']>;
+  export type Comment = InstanceType<Nodes['Comment']>;
   export type Node = Omit<InstanceType<Nodes['Node']>, 'nodeName'> &
     (
       | ({ nodeName: 'root' } & Root)
@@ -35,5 +40,6 @@ export namespace Stylus {
       | ({ nodeName: 'function' } & Function)
       | ({ nodeName: 'params' } & Params)
       | ({ nodeName: 'binop' } & BinOp)
+      | ({ nodeName: 'comment' } & Comment)
     );
 }

@@ -3,7 +3,9 @@
   "version": "0.0.1-alpha.0",
   "description": "Prettier plugin for Stylus",
   "main": "dist/index.js",
-  "files": ["dist/!(*.js.map)"],
+  "files": [
+    "dist/!(*.js.map)"
+  ],
   "scripts": {
     "build": "esbuild src/index.ts src/utils.ts --sourcemap --format=cjs --outdir=dist",
     "example": "npm run build && prettier --plugin . tests/example.styl",
