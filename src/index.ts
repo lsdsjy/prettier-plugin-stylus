@@ -1,8 +1,7 @@
 // @ts-ignore
 import Parser from 'stylus/lib/parser.js';
-import * as postcss from 'postcss';
 import * as prettier from 'prettier';
-import { ArrayKeys, formatParams } from './utils';
+import { ArrayKeys } from './utils';
 import { Stylus } from './types';
 const b = prettier.doc.builders;
 
