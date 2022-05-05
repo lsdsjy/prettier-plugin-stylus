@@ -9,6 +9,11 @@
     "example": "npm run build && prettier --plugin . tests/example.styl",
     "test": "npm run build && jest"
   },
+  "homepage": "https://github.com/lsdsjy/prettier-plugin-stylus",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lsdsjy/prettier-plugin-stylus.git"
+  },
   "keywords": [
     "prettier",
     "stylus",
