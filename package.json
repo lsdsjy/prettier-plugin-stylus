@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-stylus",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "description": "Prettier plugin for Stylus",
   "main": "dist/index.js",
   "files": [
@@ -9,6 +9,8 @@
   "scripts": {
     "build": "esbuild src/index.ts src/utils.ts --sourcemap --format=cjs --outdir=dist",
     "example": "npm run build && prettier --plugin . tests/example.styl",
+    "typeCheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typeCheck && npm run build",
     "test": "npm run build && jest"
   },
   "homepage": "https://github.com/lsdsjy/prettier-plugin-stylus",
@@ -35,7 +37,7 @@
     "@types/stylus": "^0.48.37",
     "esbuild": "^0.14.38",
     "jest": "^27.5.1",
-    "jest-watch-typeahead": "^0.2.1",
+    "jest-watch-typeahead": "^1.1.0",
     "typescript": "^4.6.3"
   }
 }
