@@ -23,6 +23,7 @@ export namespace Stylus {
   export type Params = InstanceType<Nodes['Params']>;
   export type BinOp = InstanceType<Nodes['BinOp']>;
   export type Comment = InstanceType<Nodes['Comment']>;
+  export type String = InstanceType<Nodes['String']>;
   export type Node = Omit<InstanceType<Nodes['Node']>, 'nodeName'> &
     (
       | ({ nodeName: 'root' } & Root)
@@ -41,5 +42,6 @@ export namespace Stylus {
       | ({ nodeName: 'params' } & Params)
       | ({ nodeName: 'binop' } & BinOp)
       | ({ nodeName: 'comment' } & Comment)
+      | ({ nodeName: 'string' } & String)
     );
 }

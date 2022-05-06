@@ -117,6 +117,8 @@ const printStylus: Printer = (path, options, print) => {
       }
     case 'literal':
       return node.string;
+    case 'string': // e.g. content
+      return [`'`, node.string, `'`]
     case 'comment':
       return node.str;
     default:
