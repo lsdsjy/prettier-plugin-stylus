@@ -163,9 +163,7 @@ const toSequence = (path: prettier.AstPath<Stylus.Node>): Stylus.Node[] => {
   };
 
   let token: Stylus.Token;
-  while ((token = lexer.advance()) && token.type !== 'eos') {
-    if (token.val && typeof token.val === 'object') seq.push(token.val);
-  }
+  while ((token = lexer.advance()) && token.type !== 'eos');
 
   for (const comment of comments) {
     // find the first node after the comment
