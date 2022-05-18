@@ -5,6 +5,7 @@ a, div {
   color: white 
   span {
     background rgba(0,0,0,1)
+    color #ff00e3;
   }
 }
 
@@ -15,6 +16,7 @@ div
   color white
   span
     background rgba(0, 0, 0, 1)
+    color #ff00e3
 
 .cl
   display flex

@@ -121,6 +121,8 @@ const printStylus: Printer = (path, options, print) => {
       return [`'`, node.string, `'`]
     case 'comment':
       return node.str;
+    case 'rgba':
+      return (node as any).raw;
     default:
       console.error(node);
       // @ts-expect-error
