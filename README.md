@@ -11,14 +11,16 @@ npm i prettier-plugin-stylus
 ```
 
 Then add it to your prettierrc file, e.g.:
+
 ```json
 {
-    "plugins": ["prettier-plugin-stylus"],
-    "trailingComma": "all"
+  "plugins": ["prettier-plugin-stylus"],
+  "trailingComma": "all"
 }
 ```
 
 Or you can specify it in command line:
+
 ```sh
 npx prettier --plugin=prettier-plugin-stylus some.styl
 ```

@@ -6,7 +6,13 @@ import Lexer from 'stylus/lib/lexer.js';
 import Comment from 'stylus/lib/nodes/comment.js';
 import * as assert from 'assert/strict';
 import * as prettier from 'prettier';
-import { ArrayKeys } from './utils';
+import {
+  ArrayKeys,
+  isInlineComment,
+  isAstRoot,
+  isSingleIdent,
+  getCommentSequence
+} from './utils';
 import { Stylus } from './types';
 const b = prettier.doc.builders;
 
@@ -71,17 +77,25 @@ const printStylus: Printer = (path, options, print) => {
       return block(children(node, 'nodes'));
     }
     case 'property': {
-      return [children(node, 'segments'), ' ', child(node, 'expr')];
+      const value = node.expr.nodes[0] as Stylus.Node;
+      const sep =
+        value.nodeName === 'ident' && !isSingleIdent(value) ? ': ' : ' ';
+      // colon cannot be omitted in `width: w = 150px`
+      return [children(node, 'segments'), sep, child(node, 'expr')];
     }
     case 'expression': {
       const content = b.join(' ', children(node, 'nodes'));
-      if (path.getParentNode()?.nodeName === 'selector') {
+      const parent = path.getParentNode();
+      if (parent?.nodeName === 'selector' || parent?.nodeName === 'keyframes') {
         return ['{', content, '}'];
       }
       return content;
     }
     case 'binop': {
       return [child(node, 'left'), ' ', node.op, ' ', child(node, 'right')];
+    }
+    case 'unaryop': {
+      return [node.op, '(', child(node, 'expr'), ')'];
     }
     case 'each': {
       return [
@@ -106,23 +120,28 @@ const printStylus: Printer = (path, options, print) => {
     case 'unit':
       return `${node.val}${node.type ?? ''}`;
     case 'ident':
-      if ((node.val as any).isNull) {
+      if (isSingleIdent(node)) {
         return node.string;
       } else {
-        const parent = path.getParentNode();
-        if (parent?.nodeName === 'params') {
-          return [node.name, ' = ', child(node, 'val')];
+        if (node.val.nodeName === 'function') {
+          return child(node, 'val');
         }
-        return child(node, 'val');
+        return [node.name, ' = ', child(node, 'val')];
       }
     case 'literal':
       return node.string;
     case 'string': // e.g. content
-      return [`'`, node.string, `'`]
+      return [`'`, node.string, `'`];
     case 'comment':
       return node.str;
     case 'rgba':
       return (node as any).raw;
+    case 'keyframes':
+      return [
+        '@keyframes ',
+        children(node, 'segments'),
+        child(node as any, 'block')
+      ];
     default:
       console.error(node);
       // @ts-expect-error

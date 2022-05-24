@@ -1,0 +1,14 @@
+
+@keyframes example
+    0%
+        background #ffffff
+    50%
+        background #f0f0f0
+    to
+        color red
+
+$keyframe-name = pulse
+@keyframes {$keyframe-name}-a
+  for i in 0..10
+    {10% * i}
+      opacity (i/10)

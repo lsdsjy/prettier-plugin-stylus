@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`keyframes.styl 1`] = `
+
+@keyframes example
+    0%
+        background #ffffff
+    50%
+        background #f0f0f0
+    to
+        color red
+
+$keyframe-name = pulse
+@keyframes {$keyframe-name}-a
+  for i in 0..10
+    {10% * i}
+      opacity (i/10)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@keyframes example
+    0%
+        background #ffffff
+    50%
+        background #f0f0f0
+    to
+        color red
+
+$keyframe-name = pulse
+
+@keyframes {$keyframe-name}-a
+    for i in 0 .. 10
+        {10% * i}
+            opacity i / 10
+
+`;
+
+exports[`variables.styl 1`] = `
+
+ font-size = 14px
+
+ body
+   font font-size Arial, sans-serif
+   text-color = white
+   p
+    color text-color
+
+ #logo
+   position: absolute
+   top: 50%
+   left: 50%
+   width: w = 150px
+   height: h = 80px
+   margin-left: -(w / 2)
+   margin-top: -(h / 2)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+font-size = 14px
+
+body
+    font font-size Arial sans-serif
+    text-color = white
+    p
+        color text-color
+
+#logo
+    position absolute
+    top 50%
+    left 50%
+    width: w = 150px
+    height: h = 80px
+    margin-left -(w / 2)
+    margin-top -(h / 2)
+
+`;
