@@ -142,6 +142,18 @@ const printStylus: Printer = (path, options, print) => {
         children(node, 'segments'),
         child(node as any, 'block')
       ];
+    case 'media':
+      return ['@media ', child(node, 'val'), child(node as any, 'block')];
+    case 'querylist':
+      return b.join(', ', children(node, 'nodes'));
+    case 'query':
+      return [
+        node.resolvedPredicate ? node.resolvedPredicate + ' ' : '',
+        node.resolvedType ? node.resolvedType + ' and ' : '',
+        b.join(' and ', children(node, 'nodes'))
+      ];
+    case 'feature':
+      return ['(', children(node, 'segments'), ': ', child(node, 'expr'), ')'];
     default:
       console.error(node);
       // @ts-expect-error

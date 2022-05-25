@@ -27,6 +27,13 @@ export namespace Stylus {
   export type RGBA = InstanceType<Nodes['RGBA']>;
   export type Keyframes = InstanceType<Nodes['Keyframes']>;
   export type UnaryOp = InstanceType<Nodes['UnaryOp']>;
+  export type Media = InstanceType<Nodes['Media']>;
+  export type QueryList = InstanceType<Nodes['QueryList']>;
+  export type Query = InstanceType<Nodes['Query']>;
+  export type Feature = {
+    segments: Node[];
+    expr: Node;
+  };
   export type Node = Omit<InstanceType<Nodes['Node']>, 'nodeName'> &
     (
       | ({ nodeName: 'root' } & Root)
@@ -49,5 +56,9 @@ export namespace Stylus {
       | ({ nodeName: 'rgba' } & RGBA)
       | ({ nodeName: 'keyframes' } & Keyframes)
       | ({ nodeName: 'unaryop' } & UnaryOp)
+      | ({ nodeName: 'media' } & Media)
+      | ({ nodeName: 'querylist' } & QueryList)
+      | ({ nodeName: 'query' } & Query)
+      | ({ nodeName: 'feature' } & Feature)
     );
 }
