@@ -1,4 +1,4 @@
-import { AstPath, doc } from 'prettier';
+import { AstPath } from 'prettier';
 // @ts-ignore
 import Comment from 'stylus/lib/nodes/comment.js';
 import { Stylus } from './types';
@@ -25,17 +25,4 @@ export function isSingleIdent(node: Stylus.Ident) {
 
 export function isAstRoot(path: AstPath) {
   return path.stack.length === 1;
-}
-
-export function getCommentSequence(seq: Stylus.Node[], start = 0) {
-  let end = start;
-  while (isInlineComment(seq[end])) {
-    end++;
-  }
-  const comments = seq
-    .slice(start, end)
-    .map((c) => [(c as Stylus.Comment).str, doc.builders.hardline]);
-  if (comments.length > 0) {
-    return comments;
-  }
 }

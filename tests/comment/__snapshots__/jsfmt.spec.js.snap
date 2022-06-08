@@ -1,27 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`comment.styl 1`] = `
+// BOF comment
 a, div {   // inline comment
   color: white   // comment
+  // another comment
   /* asjlfk
   */ span {
-    background rgba(0,0,0,1)
+    background rgba(0,0,0,1) // comment 1
+    // comment 2
   }
 }
+
+$a = 1 // comment on top-level decl
+
      /* 
 This is a comment
-  */
-// Comment too~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  */ // EOF comment~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// BOF comment
+
 a
-div  // inline comment
+div
+  // inline comment
   color white // comment
+  // another comment
   /* asjlfk
   */
   span
-    background rgba(0, 0, 0, 1)
+    background rgba(0, 0, 0, 1) // comment 1
+    // comment 2
+
+$a = 1 // comment on top-level decl
 
 /* 
 This is a comment
-  */ // Comment too
+  */
+
+// EOF comment
 
 `;

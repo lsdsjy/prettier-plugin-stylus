@@ -1,18 +1,11 @@
 // @ts-ignore
 import Parser from 'stylus/lib/parser.js';
 // @ts-ignore
-import Lexer from 'stylus/lib/lexer.js';
+import Token from 'stylus/lib/token.js';
 // @ts-ignore
 import Comment from 'stylus/lib/nodes/comment.js';
-import * as assert from 'assert/strict';
 import * as prettier from 'prettier';
-import {
-  ArrayKeys,
-  isInlineComment,
-  isAstRoot,
-  isSingleIdent,
-  getCommentSequence
-} from './utils';
+import { ArrayKeys, isSingleIdent } from './utils';
 import { Stylus } from './types';
 const b = prettier.doc.builders;
 
@@ -29,7 +22,20 @@ const AST_FORMAT = 'postcss-stylus-ast';
 const parsers: Record<string, prettier.Parser> = {
   stylus: {
     parse: (text) => {
-      const result = new Parser(text, { cache: false }).parse();
+      const parser = new Parser(text, { cache: false });
+      const originalComment = parser.lexer.comment.bind(parser.lexer);
+      // Hack stylus lexer to preserve single line comment
+      parser.lexer.comment = function () {
+        if ('/' == this.str[0] && '/' == this.str[1]) {
+          let end = this.str.indexOf('\n');
+          if (-1 == end) end = this.str.length;
+          const str = this.str.substr(0, end);
+          this.skip(end);
+          return new Token('comment', new Comment(str, false, true));
+        }
+        return originalComment();
+      };
+      const result = parser.parse();
       result.text = text;
       return result;
     },
@@ -161,88 +167,9 @@ const printStylus: Printer = (path, options, print) => {
   }
 };
 
-// flatten AST into sequence, with comment nodes
-const toSequence = (path: prettier.AstPath<Stylus.Node>): Stylus.Node[] => {
-  assert.equal(path.stack.length, 1);
-
-  let seq: Stylus.Node[] = [];
-  const toRemove: Record<number, true> = {};
-
-  const recurse = (path: prettier.AstPath<Stylus.Node>) => {
-    const node = path.getValue();
-    const i = seq.length;
-    seq.push(node);
-    printStylus(path, null!, recurse as any);
-    // by keeping "atomic" nodes only, we can get something like token sequence
-    if (seq[seq.length - 1] !== node) {
-      toRemove[i] = true;
-    }
-  };
-  recurse(path);
-  seq = seq.filter((_, i) => !toRemove[i]);
-
-  const comments: Stylus.Node[] = [];
-  const lexer = new Lexer((path.stack[0] as any).text);
-  // Stylus Lexer skips inline comment, hack it
-  const originalSkip = lexer.skip.bind(lexer);
-  lexer.skip = (len: number) => {
-    if (lexer.str.slice(0, 2) === '//') {
-      const comment = new Comment(lexer.str.slice(0, len), false, true);
-      comment.lineno = lexer.lineno;
-      comment.column = lexer.column;
-      comments.push(comment);
-    }
-    originalSkip(len);
-  };
-
-  let token: Stylus.Token;
-  while ((token = lexer.advance()) && token.type !== 'eos');
-
-  for (const comment of comments) {
-    // find the first node after the comment
-    let insertIndex = seq.findIndex(
-      (node) =>
-        node.lineno > comment.lineno ||
-        (node.lineno == comment.lineno && node.column >= comment.column)
-    );
-    if (insertIndex === -1) {
-      insertIndex = seq.length;
-    }
-    seq.splice(insertIndex, 0, comment);
-  }
-
-  return seq;
-};
-
-const seq: Stylus.Node[] = [];
-
-const print: prettier.Printer<Stylus.Node>['print'] = (
-  path,
-  options,
-  prettierPrint
-) => {
-  if (path.stack.length === 1) {
-    seq.length = 0;
-    seq.push(...toSequence(path));
-  }
-  const node = path.getValue();
-  const index = seq.indexOf(node);
-  if (
-    seq[index + 1] instanceof Comment &&
-    (seq[index + 1] as Stylus.Comment).inline
-  ) {
-    return [
-      printStylus(path, options, prettierPrint),
-      ' ',
-      (seq[index + 1] as Stylus.Comment).str
-    ];
-  }
-  return printStylus(path, options, prettierPrint);
-};
-
 const printers = {
   [AST_FORMAT]: {
-    print
+    print: printStylus
   }
 };
 
