@@ -160,6 +160,11 @@ const printStylus: Printer = (path, options, print) => {
       ];
     case 'feature':
       return ['(', children(node, 'segments'), ': ', child(node, 'expr'), ')'];
+    case 'import':
+      return [
+        `@${node.once ? 'require' : 'import'} `,
+        `'${(node.path.nodes[0] as any).string}'`
+      ];
     default:
       console.error(node);
       // @ts-expect-error
