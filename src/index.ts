@@ -90,8 +90,13 @@ const printStylus: Printer = (path, options, print) => {
       return [children(node, 'segments'), sep, child(node, 'expr')];
     }
     case 'expression': {
-      const content = b.join(' ', children(node, 'nodes'));
       const parent = path.getParentNode();
+      const grandparent = path.getParentNode(1);
+      // HACK: stylus parses url(a/b.png) as a function call with five arguments(a, /, b, ., png)
+      // where we shouldn't add spaces
+      const isUrl =
+        grandparent?.nodeName === 'call' && grandparent.name === 'url';
+      const content = b.join(isUrl ? '' : ' ', children(node, 'nodes'));
       if (parent?.nodeName === 'selector' || parent?.nodeName === 'keyframes') {
         return ['{', content, '}'];
       }

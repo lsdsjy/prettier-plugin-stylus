@@ -110,6 +110,20 @@ exports[`media.styl 1`] = `
 
 `;
 
+exports[`url.styl 1`] = `
+.foo
+    background url(img/bar.png) no-repeat
+
+.foo
+    background url('img/bar.png') no-repeat~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.foo
+    background url(img/bar.png) no-repeat
+
+.foo
+    background url('img/bar.png') no-repeat
+
+`;
+
 exports[`variables.styl 1`] = `
 
  font-size = 14px
