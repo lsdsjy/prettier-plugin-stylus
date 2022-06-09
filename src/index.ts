@@ -146,7 +146,7 @@ const printStylus: Printer = (path, options, print) => {
     case 'comment':
       return node.str;
     case 'rgba':
-      return (node as any).raw;
+      return ((node as any).raw as string).trim();
     case 'keyframes':
       return [
         '@keyframes ',
