@@ -27,8 +27,7 @@ npx prettier --plugin=prettier-plugin-stylus some.styl
 
 ## TODO
 
-- [x] support comment
-- [x] support keyframes & media query
+- [ ] use vitest for tests
 - [ ] add plugin recommendation in prettier docs
 - [ ] Vue SFC (Waiting for upstream, see https://github.com/prettier/prettier/pull/12707)
 - [ ] playground
