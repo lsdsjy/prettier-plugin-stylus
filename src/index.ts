@@ -132,7 +132,8 @@ const printStylus: Printer = (path, options, print) => {
       return `${node.val}${node.type ?? ''}`;
     case 'ident':
       if (isSingleIdent(node)) {
-        return node.string;
+        // TODO: improve @types/stylus?
+        return `${node.string}${(node as any).rest ? '...' : ''}`;
       } else {
         if (node.val.nodeName === 'function') {
           return child(node, 'val');

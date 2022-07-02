@@ -40,3 +40,13 @@ div.some-layer
   wh(add(1px, 3), 2em)
 
 `;
+
+exports[`rest.styl 1`] = `
+shadow(offset-x, args...)
+  box-shadow: offset-x args
+  margin-top: offset-x~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+shadow(offset-x, args...)
+  box-shadow offset-x args
+  margin-top offset-x
+
+`;
