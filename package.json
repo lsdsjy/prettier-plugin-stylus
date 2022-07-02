@@ -8,10 +8,10 @@
   ],
   "scripts": {
     "build": "esbuild src/index.ts src/utils.ts --sourcemap --format=cjs --outdir=dist",
-    "example": "npm run build && prettier --plugin . tests/mixins/rest.styl",
+    "example": "pnpm build && prettier --plugin . tests/mixins/rest.styl",
     "typeCheck": "tsc --noEmit",
-    "prepublishOnly": "npm run typeCheck && npm run build",
-    "test": "npm run build && jest"
+    "prepublishOnly": "pnpm typeCheck && pnpm build",
+    "test": "pnpm build && jest"
   },
   "homepage": "https://github.com/lsdsjy/prettier-plugin-stylus",
   "repository": {
