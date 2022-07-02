@@ -28,6 +28,8 @@ npx prettier --plugin=prettier-plugin-stylus some.styl
 ## TODO
 
 - [ ] use vitest for tests
+- [ ] @font-face
+- [ ] object/hashes
 - [ ] add plugin recommendation in prettier docs
 - [ ] Vue SFC (Waiting for upstream, see https://github.com/prettier/prettier/pull/12707)
 - [ ] playground
