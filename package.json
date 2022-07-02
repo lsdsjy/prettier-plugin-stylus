@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-stylus",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1-beta.3",
   "description": "Prettier plugin for Stylus",
   "main": "dist/index.js",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "esbuild src/index.ts src/utils.ts --sourcemap --format=cjs --outdir=dist",
-    "example": "npm run build && prettier --plugin . tests/example.styl",
+    "example": "npm run build && prettier --plugin . tests/mixins/rest.styl",
     "typeCheck": "tsc --noEmit",
     "prepublishOnly": "npm run typeCheck && npm run build",
     "test": "npm run build && jest"
