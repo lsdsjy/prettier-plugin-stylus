@@ -4,6 +4,11 @@
 
 ![Demo](demo.png)
 
+## Features
+
+- Pythonic style formatting
+- [Compatible with Vue.js Single-File Components](https://prettier.io/blog/2022/06/14/2.7.0.html#infer-stylus-parser-for-vue-sfc-style-block-12707httpsgithubcomprettierprettierpull12707-by-lsdsjyhttpsgithubcomlsdsjy)
+
 ## Usage
 
 ```sh
@@ -31,5 +36,4 @@ npx prettier --plugin=prettier-plugin-stylus some.styl
 - [ ] @font-face
 - [ ] object/hashes
 - [ ] add plugin recommendation in prettier docs
-- [ ] Vue SFC (Waiting for upstream, see https://github.com/prettier/prettier/pull/12707)
 - [ ] playground
