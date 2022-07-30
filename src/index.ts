@@ -1,10 +1,5 @@
-// @ts-ignore
-import Parser from 'stylus/lib/parser.js';
-// @ts-ignore
-import Token from 'stylus/lib/token.js';
-// @ts-ignore
-import Comment from 'stylus/lib/nodes/comment.js';
 import * as prettier from 'prettier';
+import { BLANK_LINE_PLACEHOLDER, parse } from './parser';
 import { ArrayKeys, isSingleIdent } from './utils';
 import { Stylus } from './types';
 const b = prettier.doc.builders;
@@ -21,24 +16,7 @@ const AST_FORMAT = 'postcss-stylus-ast';
 
 const parsers: Record<string, prettier.Parser> = {
   stylus: {
-    parse: (text) => {
-      const parser = new Parser(text, { cache: false });
-      const originalComment = parser.lexer.comment.bind(parser.lexer);
-      // Hack stylus lexer to preserve single line comment
-      parser.lexer.comment = function () {
-        if ('/' == this.str[0] && '/' == this.str[1]) {
-          let end = this.str.indexOf('\n');
-          if (-1 == end) end = this.str.length;
-          const str = this.str.substr(0, end);
-          this.skip(end);
-          return new Token('comment', new Comment(str, false, true));
-        }
-        return originalComment();
-      };
-      const result = parser.parse();
-      result.text = text;
-      return result;
-    },
+    parse,
     astFormat: AST_FORMAT,
     locStart: () => {
       throw new Error();
@@ -61,15 +39,12 @@ type Printer = prettier.Printer<Stylus.Node>['print'];
 const printStylus: Printer = (path, options, print) => {
   const node = path.getValue();
   const children = <T, P extends ArrayKeys<T> = ArrayKeys<T>>(_: T, prop: P) =>
-    path.map(print, prop);
-  const child = <T>(_: T, prop: keyof T) => path.call(print, prop);
+    (path as any).map(print, prop);
+  const child = <T>(_: T, prop: keyof T) => (path as any).call(print, prop);
 
   switch (node.nodeName) {
     case 'root':
-      return [
-        b.join([b.hardline, b.hardline], children(node, 'nodes')),
-        b.hardline
-      ];
+      return [b.join(b.hardline, children(node, 'nodes')), b.hardline];
     case 'group': {
       return [
         b.join(b.hardline, children(node, 'nodes')),
@@ -145,6 +120,9 @@ const printStylus: Printer = (path, options, print) => {
     case 'string': // e.g. content
       return [`'`, node.string, `'`];
     case 'comment':
+      if (node.str.includes(BLANK_LINE_PLACEHOLDER)) {
+        return '';
+      }
       return node.str;
     case 'rgba':
       return ((node as any).raw as string).trim();

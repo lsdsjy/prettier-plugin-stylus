@@ -7,8 +7,8 @@
     "dist/!(*.js.map)"
   ],
   "scripts": {
-    "build": "esbuild src/index.ts src/utils.ts --sourcemap --format=cjs --outdir=dist",
-    "example": "pnpm build && prettier --plugin . tests/mixins/rest.styl",
+    "build": "esbuild src/parser.ts src/index.ts src/utils.ts --sourcemap --format=cjs --outdir=dist",
+    "example": "pnpm build && prettier --plugin . ",
     "typeCheck": "tsc --noEmit",
     "prepublishOnly": "pnpm typeCheck && pnpm build",
     "test": "pnpm build && jest"

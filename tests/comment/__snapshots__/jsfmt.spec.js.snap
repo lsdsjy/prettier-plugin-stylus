@@ -18,7 +18,6 @@ $a = 1 // comment on top-level decl
 This is a comment
   */ // EOF comment~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // BOF comment
-
 a
 div
   // inline comment
@@ -35,7 +34,6 @@ $a = 1 // comment on top-level decl
 /* 
 This is a comment
   */
-
 // EOF comment
 
 `;

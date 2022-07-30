@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`blank-lines.styl 1`] = `
+.checkbox
+    position relative
+
+    &__small
+        min-height 20px
+    
+    &__big
+        max-height 100px~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.checkbox
+    position relative
+
+    &__small
+        min-height 20px
+
+    &__big
+        max-height 100px
+
+`;
+
 exports[`import.styl 1`] = `
 @import './reset.styl'
 
@@ -42,6 +62,7 @@ $keyframe-name = pulse
   for i in 0..10
     {10% * i}
       opacity (i/10)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 @keyframes example
     0%
         background #ffffff
@@ -51,7 +72,6 @@ $keyframe-name = pulse
         color red
 
 $keyframe-name = pulse
-
 @keyframes {$keyframe-name}-a
     for i in 0 .. 10
         {10% * i}
@@ -86,11 +106,13 @@ exports[`media.styl 1`] = `
     }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 @media (-webkit-min-device-pixel-ratio: 2)
     div
         width 200%
         height 200%
         transform scale(0.5)
+
 
 @media screen and (min-width: 600px)
     .foo
@@ -142,6 +164,7 @@ exports[`variables.styl 1`] = `
    height: h = 80px
    margin-left: -(w / 2)
    margin-top: -(h / 2)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 font-size = 14px
 
 body
