@@ -6,13 +6,12 @@ specifiers:
   esbuild: ^0.14.38
   jest: ^27.5.1
   jest-watch-typeahead: ^1.1.0
-  prettier: ^2.6.2
+  prettier: ^2.7.1
   stylus: ^0.57.0
   tslib: ^2.4.0
   typescript: ^4.6.3
 
 dependencies:
-  prettier: 2.7.1
   stylus: 0.57.0
 
 devDependencies:
@@ -21,6 +20,7 @@ devDependencies:
   esbuild: 0.14.48
   jest: 27.5.1
   jest-watch-typeahead: 1.1.0_jest@27.5.1
+  prettier: 2.7.1
   tslib: 2.4.0
   typescript: 4.7.4
 
@@ -2524,7 +2524,7 @@ packages:
     resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
     engines: {node: '>=10.13.0'}
     hasBin: true
-    dev: false
+    dev: true
 
   /pretty-format/27.5.1:
     resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
