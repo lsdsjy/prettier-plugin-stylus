@@ -116,7 +116,8 @@ const printStylus: Printer = (path, options, print) => {
         return [node.name, ' = ', child(node, 'val')];
       }
     case 'literal':
-      return node.string;
+      // LiteralNode.string is not always JS string, could be a StringNode
+      return typeof node.string === 'string' ? node.string : child(node, 'string')
     case 'string': // e.g. content
       return [`'`, node.string, `'`];
     case 'comment':

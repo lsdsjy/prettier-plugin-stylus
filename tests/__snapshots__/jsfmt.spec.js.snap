@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`attribute.styl 1`] = `
+code[class*="language-"]
+pre[class*="language-"]
+    color black
+
+.foo[title*='\\&']
+    color white~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+code[class*='language-']
+pre[class*='language-']
+    color black
+
+.foo[title*='\\&']
+    color white
+
+`;
+
 exports[`blank-lines.styl 1`] = `
 .checkbox
     position relative
