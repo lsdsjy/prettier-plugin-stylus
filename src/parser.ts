@@ -15,17 +15,22 @@ export const BLANK_LINE_PLACEHOLDER = 'APLACEHOLDERWHICHNEVERCOLLIDES';
  */
 function preserveBlankLines(text: string) {
   const lines = splitLinesWithEols(text);
-  for (let i = 0; i < lines.length; i++) {
+  // Trim start and end, like prettier css printer does
+  let start = 0,
+    end = lines.length - 1;
+  for (; start < end && isBlankLine(lines[start]); start++);
+  for (; end > start && isBlankLine(lines[end]); end--);
+
+  for (let i = start; i < end; i++) {
     if (isBlankLine(lines[i])) {
       let indent = '';
-      if (i > 0) {
+      if (i > 0 && !isBlankLine(lines[i - 1])) {
         indent = lines[i - 1].match(/\s*/)?.[0] ?? '';
       }
       lines[i] = indent + '//' + BLANK_LINE_PLACEHOLDER + lines[i];
     }
   }
-  text = lines.join('');
-  return text;
+  return lines.slice(start, end + 1).join('');
 }
 
 export function parse(text: string) {
@@ -43,7 +48,5 @@ export function parse(text: string) {
     }
     return originalComment();
   };
-  const result = parser.parse();
-  result.text = text;
-  return result;
+  return parser.parse();
 }

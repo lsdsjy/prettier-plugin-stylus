@@ -6,6 +6,8 @@ exports[`basic.vue 1`] = `
 </template>
 
 <style lang="stylus">
+
+
 font-size = 14px
 
 body
@@ -30,7 +32,6 @@ body
 </template>
 
 <style lang="stylus">
-
 font-size = 14px
 
 body
@@ -50,5 +51,50 @@ body
     margin-left -(w / 2)
     margin-top -(h / 2)
 </style>
+
+`;
+
+exports[`blank.vue 1`] = `
+<template>
+    <div></div>
+</template>
+
+<style lang="stylus">
+
+
+</style>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<template>
+    <div></div>
+</template>
+
+<style lang="stylus"></style>
+
+`;
+
+exports[`empty.vue 1`] = `
+<template>
+    <div></div>
+</template>
+
+<style lang="stylus"></style>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<template>
+    <div></div>
+</template>
+
+<style lang="stylus"></style>
+
+`;
+
+exports[`space.vue 1`] = `
+<template>
+    <div></div>
+</template>
+
+<style lang="stylus">  </style>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<template>
+    <div></div>
+</template>
+
+<style lang="stylus"></style>
 
 `;

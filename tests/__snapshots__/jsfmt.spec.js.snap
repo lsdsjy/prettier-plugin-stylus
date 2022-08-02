@@ -78,7 +78,6 @@ $keyframe-name = pulse
   for i in 0..10
     {10% * i}
       opacity (i/10)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 @keyframes example
     0%
         background #ffffff
@@ -122,7 +121,6 @@ exports[`media.styl 1`] = `
     }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 @media (-webkit-min-device-pixel-ratio: 2)
     div
         width 200%
@@ -180,7 +178,6 @@ exports[`variables.styl 1`] = `
    height: h = 80px
    margin-left: -(w / 2)
    margin-top: -(h / 2)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 font-size = 14px
 
 body
