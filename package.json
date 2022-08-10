@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-stylus",
-  "version": "0.0.1-beta.6",
+  "version": "0.0.1-beta.7",
   "description": "Prettier plugin for Stylus",
   "main": "dist/index.js",
   "files": [
@@ -32,7 +32,7 @@
     "stylus": "^0.57.0"
   },
   "peerDependencies": {
-    "prettier": ">2"
+    "prettier": "*"
   },
   "devDependencies": {
     "@types/prettier": "^2.6.0",
