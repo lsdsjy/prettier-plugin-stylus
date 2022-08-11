@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-stylus",
-  "version": "0.0.1-beta.7",
+  "version": "0.0.1-beta.8",
   "description": "Prettier plugin for Stylus",
   "main": "dist/index.js",
   "files": [
@@ -11,6 +11,7 @@
     "example": "pnpm build && prettier --plugin . ",
     "typeCheck": "tsc --noEmit",
     "prepublishOnly": "pnpm typeCheck && pnpm build",
+    "bump": "bumpp --commit --tag --push",
     "test": "pnpm build && jest"
   },
   "homepage": "https://github.com/lsdsjy/prettier-plugin-stylus",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@types/prettier": "^2.6.0",
     "@types/stylus": "^0.48.37",
+    "bumpp": "^8.2.1",
     "esbuild": "^0.14.38",
     "jest": "^27.5.1",
     "jest-watch-typeahead": "^1.1.0",
