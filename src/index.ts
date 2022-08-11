@@ -108,7 +108,7 @@ const printStylus: Printer = (path, options, print) => {
     case 'ident':
       if (isSingleIdent(node)) {
         // TODO: improve @types/stylus?
-        return `${node.string}${(node as any).rest ? '...' : ''}`;
+        return `${(node as any).property ? '@' : ''}${node.string}${(node as any).rest ? '...' : ''}`;
       } else {
         if (node.val.nodeName === 'function') {
           return child(node, 'val');
@@ -117,7 +117,9 @@ const printStylus: Printer = (path, options, print) => {
       }
     case 'literal':
       // LiteralNode.string is not always JS string, could be a StringNode
-      return typeof node.string === 'string' ? node.string : child(node, 'string')
+      return typeof node.string === 'string'
+        ? node.string
+        : child(node, 'string');
     case 'string': // e.g. content
       return [`'`, node.string, `'`];
     case 'comment':

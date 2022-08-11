@@ -146,6 +146,22 @@ exports[`media.styl 1`] = `
 
 `;
 
+exports[`property-lookup.styl 1`] = `
+a = 1px
+
+h1
+    font-size 30px
+    line-height @font-size
+    height a~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+a = 1px
+
+h1
+    font-size 30px
+    line-height @font-size
+    height a
+
+`;
+
 exports[`url.styl 1`] = `
 .foo
     background url(img/bar.png) no-repeat
