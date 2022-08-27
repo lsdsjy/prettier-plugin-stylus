@@ -7,6 +7,10 @@ module.exports = {
   print(val) {
     return val[RAW];
   },
+  // serialize(val, config, indentation, depth, refs, printer) {
+  //   // `printer` is a function that serializes a value using existing plugins.
+  //   return val[RAW];
+  // },
   test(val) {
     return (
       val &&

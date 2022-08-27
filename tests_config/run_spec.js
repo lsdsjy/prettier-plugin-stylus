@@ -1,12 +1,16 @@
 // source: https://github.com/prettier/prettier/blob/ee2839bacbf6a52d004fa2f0373b732f6f191ccc/tests_config/run_spec.js
 'use strict';
 
+import { expect, test } from 'vitest';
+import rawSerializer from './raw-serializer';
+
 const fs = require('fs');
 const path = require('path');
 
 const prettier = require('prettier');
 
 function run_spec(dirname, options) {
+  expect.addSnapshotSerializer(rawSerializer);
   fs.readdirSync(dirname).forEach((filename) => {
     const filepath = dirname + '/' + filename;
     if (

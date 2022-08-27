@@ -32,7 +32,7 @@ npx prettier --plugin=prettier-plugin-stylus some.styl
 
 ## TODO
 
-- [ ] use vitest for tests
+- [x] use vitest for tests
 - [ ] @font-face
 - [ ] object/hashes
 - [ ] add plugin recommendation in prettier docs

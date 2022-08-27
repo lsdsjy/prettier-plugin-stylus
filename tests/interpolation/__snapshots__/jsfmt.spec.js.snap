@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
 exports[`interpolation.styl 1`] = `
     for size in 48  64 80 96 112 144 
