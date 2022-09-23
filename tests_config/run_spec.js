@@ -3,6 +3,7 @@
 
 import { expect, test } from 'vitest';
 import rawSerializer from './raw-serializer';
+import plugin from '../src/index'
 
 const fs = require('fs');
 const path = require('path');
@@ -86,7 +87,7 @@ function raw(string) {
 function mergeDefaultOptions(parserConfig) {
   return Object.assign(
     {
-      plugins: [path.dirname(__dirname)],
+      plugins: [plugin],
       printWidth: 80
     },
     parserConfig

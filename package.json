@@ -12,7 +12,7 @@
     "typeCheck": "tsc --noEmit",
     "prepublishOnly": "pnpm typeCheck && pnpm build",
     "bump": "bumpp --commit --tag --push",
-    "test": "pnpm build && vitest"
+    "test": "vitest"
   },
   "homepage": "https://github.com/lsdsjy/prettier-plugin-stylus",
   "repository": {
