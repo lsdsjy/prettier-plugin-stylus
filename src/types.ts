@@ -35,6 +35,7 @@ export namespace Stylus {
     expr: Node;
   };
   export type Import = InstanceType<Nodes['Import']>;
+  export type Atrule = InstanceType<Nodes['Atrule']>;
   export type Node = Omit<InstanceType<Nodes['Node']>, 'nodeName'> &
     (
       | ({ nodeName: 'root' } & Root)
@@ -62,5 +63,6 @@ export namespace Stylus {
       | ({ nodeName: 'query' } & Query)
       | ({ nodeName: 'feature' } & Feature)
       | ({ nodeName: 'import' } & Import)
+      | ({ nodeName: 'atrule' } & Atrule)
     );
 }

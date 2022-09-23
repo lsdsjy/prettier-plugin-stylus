@@ -71,7 +71,9 @@ const printStylus: Printer = (path, options, print) => {
       // where we shouldn't add spaces
       const isUrl =
         grandparent?.nodeName === 'call' && grandparent.name === 'url';
-      const content = b.join(isUrl ? '' : ' ', children(node, 'nodes'));
+      const isCompound = (node.nodes[0] as Stylus.Node | undefined)?.nodeName === 'expression'
+      const separator = isUrl ? '' : (isCompound ? ', ' : ' ');
+      const content = b.join(separator, children(node, 'nodes'));
       if (parent?.nodeName === 'selector' || parent?.nodeName === 'keyframes') {
         return ['{', content, '}'];
       }
@@ -152,6 +154,8 @@ const printStylus: Printer = (path, options, print) => {
         `@${node.once ? 'require' : 'import'} `,
         `'${(node.path.nodes[0] as any).string}'`
       ];
+    case 'atrule':
+      return ['@' + node.type, child(node as any, 'block')]
     default:
       console.error(node);
       // @ts-expect-error

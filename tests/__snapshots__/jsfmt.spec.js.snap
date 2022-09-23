@@ -36,6 +36,19 @@ exports[`blank-lines.styl 1`] = `
 
 `;
 
+exports[`font-face.styl 1`] = `
+@font-face
+    font-family My-Custom-Font
+    src url('./assets/font/font.woff') format('woff'), url("/fonts/OpenSans-Regular-webfont.woff2")
+    font-display fallback
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@font-face
+    font-family My-Custom-Font
+    src url('./assets/font/font.woff') format('woff'), url('/fonts/OpenSans-Regular-webfont.woff2')
+    font-display fallback
+
+`;
+
 exports[`import.styl 1`] = `
 @import './reset.styl'
 
@@ -197,7 +210,7 @@ exports[`variables.styl 1`] = `
 font-size = 14px
 
 body
-    font font-size Arial sans-serif
+    font font-size Arial, sans-serif
     text-color = white
     p
         color text-color
