@@ -173,7 +173,8 @@ const printStylus = (
       if (node.str.includes(BLANK_LINE_PLACEHOLDER)) {
         return '';
       }
-      return node.str;
+      
+      return [b.lineSuffix(' ' + node.str.trimStart())]
     case 'rgba':
       return ((node as any).raw as string).trim();
     case 'keyframes':
