@@ -76,7 +76,13 @@ const printStylus = (
       return [b.join(b.hardline, children(node, 'nodes')), b.hardline];
     case 'group': {
       return [
-        b.join(b.hardline, children(node, 'nodes')),
+        b.join(b.hardline, children(node, 'nodes')).parts.map(part => {
+          if (!Array.isArray(part)) {
+            return part
+          }
+          // Remove the space inserted after the selector
+          return part.filter(s => typeof s !== 'string' || s.replaceAll(' ', '') !== '')
+        }),
         options.curlyInStylus ? ' {' : '',
         child(node, 'block'),
         options.curlyInStylus ? [b.hardline, '}'] : ''
