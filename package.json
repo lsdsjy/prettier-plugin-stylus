@@ -7,6 +7,7 @@
     "dist/!(*.js.map)"
   ],
   "scripts": {
+    "prepare": "npm run build",
     "build": "esbuild src/parser.ts src/index.ts src/utils.ts --sourcemap --format=cjs --outdir=dist",
     "example": "pnpm build && prettier --plugin . ",
     "typeCheck": "tsc --noEmit",
