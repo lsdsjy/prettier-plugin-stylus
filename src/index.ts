@@ -76,10 +76,8 @@ const printStylus = (
       return [b.join(b.hardline, children(node, 'nodes')), b.hardline];
     case 'group': {
       return [
-        [
-          b.join(', ', children(node, "nodes")),
-          options.curlyInStylus ? '{' : ''
-        ],
+        b.join(', ', children(node, "nodes")),
+        options.curlyInStylus ? '{' : '',
         child(node, "block"),
         b.hardline,
         options.curlyInStylus ? '}' : ''
