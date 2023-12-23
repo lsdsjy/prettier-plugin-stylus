@@ -37,7 +37,7 @@ Make sure you use the right version of `pnpm` as specified in `package.json`. It
 ## TODO
 
 - [x] use vitest for tests
-- [ ] @font-face
-- [ ] object/hashes
+- [x] @font-face
+- [x] object/hashes
 - [ ] add plugin recommendation in prettier docs
 - [ ] playground
