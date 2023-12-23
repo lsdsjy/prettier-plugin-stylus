@@ -27,6 +27,22 @@ const parsers: Record<string, prettier.Parser> = {
   }
 };
 
+// TODO: Please add options here!
+interface PluginOptions {
+  stylusColon: boolean;
+}
+
+const options: Record<keyof PluginOptions, prettier.SupportOption> = {
+  stylusColon: {
+    name: 'colon',
+    category: 'stylus',
+    type: 'boolean',
+    default: false,
+    description: 'Put the ":" between ident and values',
+    since: '0.2.0'
+  }
+};
+
 function block(doc: prettier.Doc) {
   return b.indent([
     b.hardline,
@@ -36,7 +52,11 @@ function block(doc: prettier.Doc) {
 
 type Printer = prettier.Printer<Stylus.Node>['print'];
 
-const printStylus: Printer = (path, options, print) => {
+const printStylus: Printer = (
+  path,
+  options: prettier.ParserOptions & PluginOptions,
+  print
+) => {
   const node = path.getValue();
   const children = <T, P extends ArrayKeys<T> = ArrayKeys<T>>(_: T, prop: P) =>
     (path as any).map(print, prop);
@@ -60,7 +80,10 @@ const printStylus: Printer = (path, options, print) => {
     case 'property': {
       const value = node.expr.nodes[0] as Stylus.Node;
       const sep =
-        value.nodeName === 'ident' && !isSingleIdent(value) ? ': ' : ' ';
+        value.nodeName === 'ident' &&
+        (!isSingleIdent(value) || options.stylusColon)
+          ? ': '
+          : ' ';
       // colon cannot be omitted in `width: w = 150px`
       return [children(node, 'segments'), sep, child(node, 'expr')];
     }
@@ -190,5 +213,6 @@ const printers = {
 module.exports = {
   languages,
   parsers,
-  printers
+  printers,
+  options
 };
