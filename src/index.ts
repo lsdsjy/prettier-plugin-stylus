@@ -71,8 +71,9 @@ const printStylus: Printer = (path, options, print) => {
       // where we shouldn't add spaces
       const isUrl =
         grandparent?.nodeName === 'call' && grandparent.name === 'url';
-      const isCompound = (node.nodes[0] as Stylus.Node | undefined)?.nodeName === 'expression'
-      const separator = isUrl ? '' : (isCompound ? ', ' : ' ');
+      const isCompound =
+        (node.nodes[0] as Stylus.Node | undefined)?.nodeName === 'expression';
+      const separator = isUrl ? '' : isCompound ? ', ' : ' ';
       const content = b.join(separator, children(node, 'nodes'));
       if (parent?.nodeName === 'selector' || parent?.nodeName === 'keyframes') {
         return ['{', content, '}'];
@@ -110,7 +111,9 @@ const printStylus: Printer = (path, options, print) => {
     case 'ident':
       if (isSingleIdent(node)) {
         // TODO: improve @types/stylus?
-        return `${(node as any).property ? '@' : ''}${node.string}${(node as any).rest ? '...' : ''}`;
+        return `${(node as any).property ? '@' : ''}${node.string}${
+          (node as any).rest ? '...' : ''
+        }`;
       } else {
         if (node.val.nodeName === 'function') {
           return child(node, 'val');
@@ -155,7 +158,22 @@ const printStylus: Printer = (path, options, print) => {
         `'${(node.path.nodes[0] as any).string}'`
       ];
     case 'atrule':
-      return ['@' + node.type, child(node as any, 'block')]
+      return ['@' + node.type, child(node as any, 'block')];
+    case 'object':
+      const fields = [];
+      for (const key in node.vals) {
+        const isLast = Object.keys(node.vals).indexOf(key) === node.length - 1;
+        const value = (path as any).call(print, 'vals', key, 'first'); // node.vals[key].first
+        fields.push([
+          key,
+          ': ',
+          value,
+          options.trailingComma !== 'none' || !isLast ? ',' : ''
+        ]);
+      }
+      return ['{', block(fields), b.hardline, '}'];
+    case 'member':
+      return [child(node, 'left'), '.', child(node, 'right')];
     default:
       console.error(node);
       // @ts-expect-error
