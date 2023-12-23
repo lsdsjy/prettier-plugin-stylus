@@ -3,7 +3,7 @@
 
 import { expect, test } from 'vitest';
 import rawSerializer from './raw-serializer';
-import plugin from '../src/index'
+import plugin from '../src/index';
 
 const fs = require('fs');
 const path = require('path');
