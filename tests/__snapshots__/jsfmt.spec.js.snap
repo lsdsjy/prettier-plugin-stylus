@@ -159,6 +159,33 @@ exports[`media.styl 1`] = `
 
 `;
 
+exports[`object.styl 1`] = `
+test = { foo: bar,
+    baz: { a: 1, }
+}
+
+abc ={
+    "foo":2
+}
+
+body
+    width abc.foo~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+test = {
+    foo: bar,
+    baz: {
+        a: 1,
+    },
+}
+
+abc = {
+    foo: 2,
+}
+
+body
+    width abc.foo
+
+`;
+
 exports[`property-lookup.styl 1`] = `
 a = 1px
 
