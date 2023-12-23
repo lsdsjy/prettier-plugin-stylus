@@ -159,6 +159,21 @@ const printStylus: Printer = (path, options, print) => {
       ];
     case 'atrule':
       return ['@' + node.type, child(node as any, 'block')];
+    case 'object':
+      const fields = [];
+      for (const key in node.vals) {
+        const isLast = Object.keys(node.vals).indexOf(key) === node.length - 1;
+        const value = (path as any).call(print, 'vals', key, 'first'); // node.vals[key].first
+        fields.push([
+          key,
+          ': ',
+          value,
+          options.trailingComma !== 'none' || !isLast ? ',' : ''
+        ]);
+      }
+      return ['{', block(fields), b.hardline, '}'];
+    case 'member':
+      return [child(node, 'left'), '.', child(node, 'right')];
     default:
       console.error(node);
       // @ts-expect-error
