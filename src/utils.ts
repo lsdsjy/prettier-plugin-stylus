@@ -9,7 +9,6 @@ export type ArrayKeys<T, P extends keyof T = keyof T> = P extends string
     : never
   : never;
 
-
 /**
  * https://gist.github.com/rauschma/d4b700385970ce6e1a70e49ffa0dff6a
  * NOTE: it uses lookbehind syntax so it may not work in bun for now
@@ -18,8 +17,8 @@ export function splitLinesWithEols(str: string) {
   return str.split(/(?<=\r?\n)/);
 }
 
-export function isBlankLine(line:string){
-  return /^\s+$/.test(line)
+export function isBlankLine(line: string) {
+  return /^\s+$/.test(line);
 }
 
 export function isInlineComment(node: unknown) {
