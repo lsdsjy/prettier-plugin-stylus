@@ -30,6 +30,10 @@ Or you can specify it in command line:
 npx prettier --plugin=prettier-plugin-stylus some.styl
 ```
 
+## Contributing
+
+Make sure you use the right version of `pnpm` as specified in `package.json`. It is also recommended to use `corepack` to automatically switch to the correct version of `pnpm`.
+
 ## TODO
 
 - [x] use vitest for tests
