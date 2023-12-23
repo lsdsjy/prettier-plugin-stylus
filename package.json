@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-stylus",
-  "version": "0.0.1-beta.9",
+  "version": "0.1.0",
   "description": "Prettier plugin for Stylus",
   "main": "dist/index.js",
   "packageManager": "pnpm@8.12.1",
