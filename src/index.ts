@@ -34,9 +34,38 @@ function block(doc: prettier.Doc) {
   ]);
 }
 
-type Printer = prettier.Printer<Stylus.Node>['print'];
+const options = {
+  curlyInStylus: {
+      type: 'boolean',
+      category: 'Global',
+      default: false,
+      description: 'Use a curly in  boolean flag',
+  },
+  colonSepInStylus: {
+      type: 'boolean',
+      category: 'Global',
+      default: false,
+      description: 'Use a colon as separator boolean flag',
+  },
+  semiInStylus: {
+    type: 'boolean',
+    category: 'Global',
+    default: false,
+    description: 'Use a semiclon as EOL boolean flag',
+  }
+};
 
-const printStylus: Printer = (path, options, print) => {
+type Options = prettier.ParserOptions<Stylus.Node> & {
+  curlyInStylus: boolean;
+  colonSepInStylus: boolean;
+  semiInStylus: boolean;
+}
+
+const printStylus = (
+  path: prettier.AstPath<Stylus.Node>,
+  options: Options,
+  print: (path: prettier.AstPath<Stylus.Node>) => prettier.doc.builders.Doc
+): prettier.doc.builders.Doc => {
   const node = path.getValue();
   const children = <T, P extends ArrayKeys<T> = ArrayKeys<T>>(_: T, prop: P) =>
     (path as any).map(print, prop);
@@ -47,8 +76,16 @@ const printStylus: Printer = (path, options, print) => {
       return [b.join(b.hardline, children(node, 'nodes')), b.hardline];
     case 'group': {
       return [
-        b.join(b.hardline, children(node, 'nodes')),
-        child(node, 'block')
+        b.join(b.hardline, children(node, 'nodes')).parts.map(part => {
+          if (!Array.isArray(part)) {
+            return part
+          }
+          // Remove the space inserted after the selector
+          return part.filter(s => typeof s !== 'string' || s.replaceAll(' ', '') !== '')
+        }),
+        options.curlyInStylus ? ' {' : '',
+        child(node, 'block'),
+        options.curlyInStylus ? [b.hardline, '}'] : ''
       ];
     }
     case 'selector': {
@@ -60,9 +97,17 @@ const printStylus: Printer = (path, options, print) => {
     case 'property': {
       const value = node.expr.nodes[0] as Stylus.Node;
       const sep =
-        value.nodeName === 'ident' && !isSingleIdent(value) ? ': ' : ' ';
+        options.colonSepInStylus ||
+        (value.nodeName === 'ident' && !isSingleIdent(value))
+          ? ': '
+          : ' ';
       // colon cannot be omitted in `width: w = 150px`
-      return [children(node, 'segments'), sep, child(node, 'expr')];
+      return [
+        children(node, 'segments'),
+        sep,
+        child(node, 'expr'),
+        options.semiInStylus ? ';' : ''
+      ];
     }
     case 'expression': {
       const parent = path.getParentNode();
@@ -131,7 +176,8 @@ const printStylus: Printer = (path, options, print) => {
       if (node.str.includes(BLANK_LINE_PLACEHOLDER)) {
         return '';
       }
-      return node.str;
+      
+      return [b.lineSuffix(' ' + node.str.trimStart())]
     case 'rgba':
       return ((node as any).raw as string).trim();
     case 'keyframes':
@@ -190,5 +236,6 @@ const printers = {
 module.exports = {
   languages,
   parsers,
-  printers
+  printers,
+  options
 };

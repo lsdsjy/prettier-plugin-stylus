@@ -1,0 +1,224 @@
+// Vitest Snapshot v1
+
+exports[`basic.styl 1`] = `
+a, div {
+  color: white 
+  span {
+    background rgba(0,0,0,1)
+    color #ff00e3;
+    border #9C9C9C  2rpx solid
+  }
+}
+
+.cl {
+  display: flex}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+a
+div {
+  color: white;
+  span {
+    background: rgba(0, 0, 0, 1);
+    color: #ff00e3;
+    border: #9C9C9C 2rpx solid;
+  }
+}
+
+.cl {
+  display: flex;
+}
+
+`;
+
+exports[`basic.vue 1`] = `
+<template>
+    <div></div>
+</template>
+
+<style lang="stylus">
+
+
+font-size = 14px
+
+body
+   font font-size Arial, sans-serif
+   text-color = white
+   
+   p
+    color text-color
+
+
+#logo
+   position: absolute
+   top: 50%
+   left: 50%
+   width: w = 150px
+   height: h = 80px
+   margin-left: -(w / 2)
+   margin-top: -(h / 2)
+</style>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<template>
+  <div></div>
+</template>
+
+<style lang="stylus">
+font-size = 14px
+
+body {
+  font: font-size Arial, sans-serif;
+  text-color = white
+
+  p {
+    color: text-color;
+
+
+  }
+}
+#logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: w = 150px;
+  height: h = 80px;
+  margin-left: -(w / 2);
+  margin-top: -(h / 2);
+}
+</style>
+
+`;
+
+exports[`blank.vue 1`] = `
+<template>
+    <div></div>
+</template>
+
+<style lang="stylus">
+
+
+</style>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<template>
+  <div></div>
+</template>
+
+<style lang="stylus"></style>
+
+`;
+
+exports[`comment.styl 1`] = `
+// BOF comment
+a, div {   // inline comment
+  color: white   // comment
+  // another comment
+  /* asjlfk
+  */ span {
+    background rgba(0,0,0,1) // comment 1
+    // comment 2
+  }
+}
+
+$a = 1 // comment on top-level decl
+
+     /* 
+This is a comment
+  */ // EOF comment~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// BOF comment
+a
+div {
+  // inline comment
+  color: white // comment;
+  // another comment
+  /* asjlfk
+  */
+  span {
+    background: rgba(0, 0, 0, 1) // comment 1;
+    // comment 2
+  }
+}
+
+$a = 1 // comment on top-level decl
+
+/* 
+This is a comment
+  */
+// EOF comment
+
+`;
+
+exports[`empty.vue 1`] = `
+<template>
+    <div></div>
+</template>
+
+<style lang="stylus"></style>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<template>
+  <div></div>
+</template>
+
+<style lang="stylus"></style>
+
+`;
+
+exports[`interpolation.styl 1`] = `
+    for size in 48  64 80 96 112 144 
+        &-{size }
+            width size px
+            height size px~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+for size in 48 64 80 96 112 144
+  &-{size} {
+    width: size px;
+    height: size px;
+  }
+
+`;
+
+exports[`mixins.styl 1`] = `
+flex()
+  display flex
+
+
+wh(w,h)
+  width w
+  height: h;
+
+
+add(a, b=1)
+  a + b
+
+add(a,   b =unit(a,px))
+  a +b
+
+div.some-layer
+  flex()
+  flex-direction column
+  wh(add(1px,3), 2em);
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+flex()
+  display: flex;
+
+
+wh(w, h)
+  width: w;
+  height: h;
+
+
+add(a, b = 1)
+  a + b
+
+add(a, b = unit(a, px))
+  a + b
+
+div.some-layer {
+  flex()
+  flex-direction: column;
+  wh(add(1px, 3), 2em)
+}
+
+`;
+
+exports[`rest.styl 1`] = `
+shadow(offset-x, args...)
+  box-shadow: offset-x args
+  margin-top: offset-x~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+shadow(offset-x, args...)
+  box-shadow: offset-x args;
+  margin-top: offset-x;
+
+`;
