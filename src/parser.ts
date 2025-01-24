@@ -33,8 +33,10 @@ function preserveBlankLines(text: string) {
   return lines.slice(start, end + 1).join('');
 }
 
-export function parse(text: string) {
-  text = preserveBlankLines(text);
+export function parse(text: string, options?: { collapseBlankLines?: boolean }) {
+  if (!options?.collapseBlankLines) {
+    text = preserveBlankLines(text);
+  }
   const parser = new StylusParser(text, { cache: false });
   const originalComment = parser.lexer.comment.bind(parser.lexer);
   // Hack stylus lexer to preserve single line comment

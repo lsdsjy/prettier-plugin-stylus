@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`blank-lines collapsed 1`] = `
+"body {
+\tcolor: red
+\tbackground: blue
+\tborder: 1px solid black
+}"
+`;
