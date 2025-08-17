@@ -9,8 +9,9 @@
   ],
   "scripts": {
     "build": "esbuild src/*.ts --sourcemap --format=cjs --outdir=dist",
+    "watch": "pnpm build --watch",
     "format": "prettier **/*.ts --write",
-    "example": "pnpm build && prettier --plugin . ",
+    "example": "prettier --plugin . ",
     "typeCheck": "tsc --noEmit",
     "prepublishOnly": "pnpm typeCheck && pnpm build",
     "bump": "bumpp --commit --tag --push",
