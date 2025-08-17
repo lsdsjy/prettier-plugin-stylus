@@ -8,8 +8,8 @@
     "dist/!(*.js.map)"
   ],
   "scripts": {
-    "build": "esbuild src/parser.ts src/index.ts src/utils.ts --sourcemap --format=cjs --outdir=dist",
-    "format": "prettier . --write",
+    "build": "esbuild src/*.ts --sourcemap --format=cjs --outdir=dist",
+    "format": "prettier **/*.ts --write",
     "example": "pnpm build && prettier --plugin . ",
     "typeCheck": "tsc --noEmit",
     "prepublishOnly": "pnpm typeCheck && pnpm build",
